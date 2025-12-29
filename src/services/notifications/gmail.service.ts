@@ -4,7 +4,7 @@ import logger from '../../utils/logger.js';
 import type { PlatformContent } from '../../models/types/content.js';
 
 export class GmailService {
-  private gmail;
+  private gmail: ReturnType<typeof google.gmail> | null = null;
   private initialized = false;
 
   initialize() {
@@ -98,7 +98,7 @@ export class GmailService {
       .replace(/\//g, '_')
       .replace(/=+$/, '');
 
-    await this.gmail!.users.messages.send({
+    await this.gmail?.users.messages.send({
       userId: 'me',
       requestBody: {
         raw: encodedMessage,

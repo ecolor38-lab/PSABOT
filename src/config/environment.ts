@@ -48,7 +48,7 @@ const envSchema = z.object({
 
   // Approval
   APPROVAL_SECRET: z.string(),
-  APPROVAL_TIMEOUT_MINUTES: z.string().default('45'),
+  APPROVAL_TIMEOUT_MINUTES: z.coerce.number().default(45),
 });
 
 export const env = envSchema.parse(process.env);

@@ -8,7 +8,7 @@ export const redis = new Redis(env.REDIS_URL, {
 });
 
 // Фабрика для создания новых подключений (для BullMQ)
-export function createRedisConnection(): Redis {
+export function createRedisConnection() {
   return new Redis(env.REDIS_URL, {
     maxRetriesPerRequest: null,
     enableReadyCheck: false,

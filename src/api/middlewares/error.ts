@@ -39,10 +39,9 @@ export function errorMiddleware(
 
   // Кастомная API ошибка
   if (err instanceof ApiError) {
-    res.status(err.statusCode).json({
-      error: err.message,
-      ...(err.details && { details: err.details }),
-    });
+    const response: { error: string; details?: unknown } = { error: err.message };
+    if (err.details) response.details = err.details;
+    res.status(err.statusCode).json(response);
     return;
   }
 

@@ -37,7 +37,7 @@ export const contentWorker = new Worker<ContentJobData>(
           id: taskId,
           platform,
           userPrompt,
-          generatedContent: content,
+          generatedContent: JSON.parse(JSON.stringify(content)),
           status: 'generated',
         },
       });
