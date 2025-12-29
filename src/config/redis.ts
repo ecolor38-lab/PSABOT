@@ -1,5 +1,8 @@
-import Redis from 'ioredis';
+import IORedis from 'ioredis';
 import { env } from './environment.js';
+
+// Workaround для ESM/CJS совместимости
+const Redis = (IORedis as any).default || IORedis;
 
 // Основное подключение
 export const redis = new Redis(env.REDIS_URL, {
