@@ -1,0 +1,46 @@
+// PSABOT - Prisma Schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Контент для публикации
+model Content {
+  id               String    @id @default(uuid())
+  platform         String    // twitter, instagram, facebook, linkedin, threads, youtube
+  status           String    @default("pending") // pending, approved, published, failed, cancelled
+  userPrompt       String    @db.Text // Промпт пользователя
+  generatedContent Json      // { text, hashtags, mentions, etc }
+  imageUrl         String?   // URL сгенерированного изображения
+  thumbnailUrl     String?   // Превью для YouTube
+  googleDriveId    String?   // ID файла в Google Drive
+  platformPostId   String?   // ID поста в соцсети после публикации
+  approvalToken    String?   @unique // Токен для одобрения через Telegram
+  approvedAt       DateTime?
+  publishedAt      DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([platform, status, approvalToken])
+}
+
+// Задачи для очереди
+model Task {
+  id          String    @id @default(uuid())
+  type        String    // generate, image, approval, publish
+  status      String    @default("pending") // pending, processing, completed, failed
+  data        Json      // Входные данные
+  result      Json?     // Результат выполнения
+  error       String?   // Текст ошибки
+  attempts    Int       @default(0) // Количество попыток
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  completedAt DateTime?
+
+  @@index([status, type])
+}
