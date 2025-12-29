@@ -1,4 +1,4 @@
-import { logger } from '../../lib/logger.js';
+import { logger } from '../../utils/logger.js';
 
 const API_BASE = 'https://api.linkedin.com/v2';
 

@@ -1,15 +1,15 @@
-import IORedis from 'ioredis';
+import Redis from 'ioredis';
 import { env } from './environment.js';
 
 // Основное подключение
-export const redis = new IORedis(env.REDIS_URL, {
+export const redis = new Redis(env.REDIS_URL, {
   maxRetriesPerRequest: null,
   enableReadyCheck: false,
 });
 
 // Фабрика для создания новых подключений (для BullMQ)
-export function createRedisConnection(): IORedis {
-  return new IORedis(env.REDIS_URL, {
+export function createRedisConnection(): Redis {
+  return new Redis(env.REDIS_URL, {
     maxRetriesPerRequest: null,
     enableReadyCheck: false,
   });

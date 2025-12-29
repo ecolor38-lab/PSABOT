@@ -4,7 +4,7 @@ import { publishToInstagram } from './instagram.js';
 import { publishToLinkedIn } from './linkedin.js';
 import { publishToThreads } from './threads.js';
 import { publishToYouTube } from './youtube.js';
-import { logger } from '../../lib/logger.js';
+import { logger } from '../../utils/logger.js';
 
 export type Platform = 'TWITTER' | 'INSTAGRAM' | 'FACEBOOK' | 'LINKEDIN' | 'THREADS' | 'YOUTUBE';
 

@@ -1,4 +1,4 @@
-import { logger } from '../../lib/logger.js';
+import { logger } from '../../utils/logger.js';
 
 const GRAPH_API = 'https://graph.threads.net/v1.0';
 

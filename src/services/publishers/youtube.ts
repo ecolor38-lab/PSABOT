@@ -1,5 +1,5 @@
 import { google } from 'googleapis';
-import { logger } from '../../lib/logger.js';
+import { logger } from '../../utils/logger.js';
 
 const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID,

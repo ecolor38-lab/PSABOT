@@ -1,5 +1,5 @@
 import { TwitterApi } from 'twitter-api-v2';
-import { logger } from '../../lib/logger.js';
+import { logger } from '../../utils/logger.js';
 
 let client: TwitterApi | null = null;
 
